@@ -5,6 +5,12 @@ const graphql = require("express-graphql");
 
 const app = express();
 const db = require("./db/db");
+
+app.use(express.json()); //parsing application/json
+app.use(express.urlencoded({ extended: true })); //parsing application/form-urlencoded
+app.use("/modules", express.static("node_modules"));
+
+const memberRoute = require("./routes/memberRoute");
 /*app.use("/graphql", (req, res) => {
   graphql({
     //schema: graphqlschema,
@@ -12,9 +18,12 @@ const db = require("./db/db");
     context: { req, res },
   });
 });*/
+app.use("/member", memberRoute);
+
 app.get("/", function (req, res) {
-  res.send("Init route");
+  res.send("Base route");
 });
+
 db.on("connected", () => {
   app.listen(process.env.HTTP_PORT, () => {
     console.log("Listening on port " + process.env.HTTP_PORT);
