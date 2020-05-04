@@ -57,8 +57,6 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLID },
       },
       resolve(parent, args) {
-        let membera = member.findById(args.id);
-        console.log(membera);
         return member.findById(args.id);
       },
     },
@@ -69,6 +67,16 @@ const RootQuery = new GraphQLObjectType({
         return event.find();
       },
     },
+    event: {
+      type: eventType,
+      description: "Get an event by id",
+      args: {
+        id:  {type: GraphQLID},
+      },
+      resolve(parent, args) {
+        return event.findById(args.id);
+      }
+    }
   },
 });
 
