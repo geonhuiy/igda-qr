@@ -8,6 +8,12 @@ const {
   GraphQLBoolean,
 } = require("graphql");
 
+const {
+  GraphQLDate,
+  GraphQLTime,
+  GraphQLDateTime,
+} = require("graphql-iso-date");
+
 const bcrypt = require("bcrypt");
 const saltRound = 12;
 
@@ -29,7 +35,8 @@ const eventType = new GraphQLObjectType({
   name: "event",
   fields: () => ({
     id: { type: GraphQLID },
-    time: { type: GraphQLString },
+    name: { type: GraphQLString },
+    date: { type: GraphQLDateTime },
     location: { type: GraphQLString },
     attendees: {
       type: new GraphQLList(memberType),
@@ -50,14 +57,14 @@ const RootQuery = new GraphQLObjectType({
         return member.find();
       },
     },
-    member: {
+    memberById: {
       type: memberType,
       description: "Gets a member by id",
       args: {
         id: { type: GraphQLID },
       },
-      resolve(parent, args) {
-        return member.findById(args.id);
+      resolve: async (parent, args) => {
+        return await member.findById(args.id);
       },
     },
     allEvents: {
@@ -71,12 +78,12 @@ const RootQuery = new GraphQLObjectType({
       type: eventType,
       description: "Get an event by id",
       args: {
-        id:  {type: GraphQLID},
+        id: { type: GraphQLID },
       },
       resolve(parent, args) {
         return event.findById(args.id);
-      }
-    }
+      },
+    },
   },
 });
 
@@ -112,12 +119,16 @@ const Mutation = new GraphQLObjectType({
       description: "Add new event",
       args: {
         location: { type: new GraphQLNonNull(GraphQLString) },
-        time: { type: new GraphQLNonNull(GraphQLString) },
+        date: { type: new GraphQLNonNull(GraphQLDateTime) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: async (parent, args, { req, res }) => {
         try {
-          let newEvent = new event(args);
-          return await newEvent.save();
+          let checkExistingEvent = await event.findOne({ name: args.name });
+          if (!checkExistingEvent) {
+            let newEvent = new event(args);
+            return newEvent.save();
+          }
         } catch (err) {
           throw new Error(err);
         }

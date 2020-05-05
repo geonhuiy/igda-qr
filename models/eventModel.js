@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const eventSchema = new Schema({
-  time: String,
+  name: String,
+  date: Date,
   location: String,
   attendees: [{type: mongoose.Types.ObjectId, ref: 'member'}]
 });
