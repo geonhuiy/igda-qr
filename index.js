@@ -3,16 +3,22 @@ require("dotenv").config();
 const express = require("express");
 const graphql = require("express-graphql");
 const graphqlschema = require('./schema/schema');
+const cors = require('cors');
+
+
 
 const app = express();
 const db = require("./db/db");
-
+app.use(cors());
 app.use(express.json()); //parsing application/json
 app.use(express.urlencoded({ extended: true })); //parsing application/form-urlencoded
 //app.use("/modules", express.static("node_modules"));
+app.use(express.static('./public'));
 
 const memberRoute = require("./routes/memberRoute");
+const eventRoute = require('./routes/eventRoute');
 app.use("/member", memberRoute);
+app.use("/event", eventRoute);
 
 app.use("/graphql", (req, res) => {
   graphql({
@@ -20,11 +26,6 @@ app.use("/graphql", (req, res) => {
     graphiql: true,
     context: { req, res },
   })(req,res);
-});
-
-
-app.get("/", function (req, res) {
-  res.send("Base route");
 });
 
 db.on("connected", () => {
