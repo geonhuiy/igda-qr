@@ -5,18 +5,21 @@ const schema = require("../schema/schema");
 var { graphql } = require("graphql");
 
 const getAllMembers = async (req, res) => {
-  let query = "{members {firstname,lastname,email}}";
+  let query = "{allMembers {firstname,lastname,email}}";
   graphql(schema, query).then((result) => {
     res.json(result);
   });
 };
 
-const getMemberById = async (id) => {
-  return await memberModel.findOne({ id });
+const getMemberById = async (req,res) => {
+  let query = `{memberById(id:"${req.params.id}"){firstname,lastname,email}}`;
+  graphql(schema, query).then((result) => {
+    res.json(result);
+  });
 };
 
 const addMember = async (req, res) => {
-  try {
+  /* try {
     const hash = await bcrypt.hash(req.body.password, saltRound);
     req.user = {
       email: req.body.email,
@@ -37,7 +40,7 @@ const addMember = async (req, res) => {
     });
   } catch (e) {
     res.status(500).json(e);
-  }
+  } */
 };
 
 module.exports = {
