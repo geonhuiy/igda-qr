@@ -36,7 +36,7 @@ const makeList = (data) => {
 
     nameSpan.innerHTML = data[i].name;
     
-    rightDiv.addEventListener('click', function(){
+    rightDiv.addEventListener('click', function() {
       console.log(data[i].id);
     })
     dateSpan.innerHTML = `${date.getHours()}:${date.getMinutes()} - ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
@@ -69,7 +69,5 @@ const fetchEvents = async (httpUrl) => {
       makeList(data.data.allEvents);
     });
 };
-
-const goToScanner()
 
 fetchEvents("/event");
