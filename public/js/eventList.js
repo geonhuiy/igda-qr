@@ -36,12 +36,9 @@ const makeList = (data) => {
 
     nameSpan.innerHTML = data[i].name;
     
-    console.log(eventId);
-    rightDiv.onclick = () => {
-      //window.location = "scanner.html?eventId="+data[i].id ;
-      var eventId = data[i];
-      console.log(eventId);
-    }
+    rightDiv.addEventListener('click', function() {
+      console.log(data[i].id);
+    })
     dateSpan.innerHTML = `${date.getHours()}:${date.getMinutes()} - ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
     locationSpan.innerHTML = data[i].location;
     countSpan.innerHTML = "Attendee count: " +data[i].attendees.length;
@@ -72,5 +69,7 @@ const fetchEvents = async (httpUrl) => {
       makeList(data.data.allEvents);
     });
 };
+
+const goToScanner()
 
 fetchEvents("/event");
