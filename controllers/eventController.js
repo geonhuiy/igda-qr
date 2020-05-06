@@ -15,7 +15,15 @@ const getEventById = async (req, res) => {
   })
 };
 
+const deleteEvent = async(req,res) => {
+  let query = `{deleteEvent(id:"${req.params.id}"){name}}`;
+  graphql(schema, query).then((result) => {
+    res.send(result);
+  })
+}
+
 module.exports = {
   getAllEvents,
   getEventById,
+  deleteEvent
 };

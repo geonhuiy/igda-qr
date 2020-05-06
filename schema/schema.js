@@ -157,6 +157,20 @@ const Mutation = new GraphQLObjectType({
         }
       },
     },
+    deleteEvent: {
+      type: eventType,
+      description: "Delete an event by ID",
+      args: {
+        eventId: {type: GraphQLID}
+      },
+      resolve: async (parent,args, {req,res}) => {
+        try {
+          let eventToDelete = await event.findByIdAndDelete(args.eventId);
+        } catch(err) {
+          throw new Error(err);
+        }
+      }
+    }
   }),
 });
 
