@@ -6,6 +6,15 @@
     <p>Some random text here</p>
     <video id="qrscanner" height="200px" width="200px"></video>
     <script type="text/javascript">
+    navigator.mediaDevices.getUserMedia({ 
+  video: { 
+    facingMode: { exact: "environment" }
+  } 
+})
+.then(function(stream) {
+  video.src = window.URL.createObjectURL(stream);
+  video.play();
+});
     const constraints = {
      video: true
     };
@@ -22,16 +31,6 @@
         if (cameras.length > 0) {
             console.log(cameras);
             var selectedCam = cameras[1];
-            async function getMedia(constraints) {
-                let stream = null;
-
-  try {
-    stream = await navigator.mediaDevices.getUserMedia(constraints);
-    selectedCam._stream = stream;
-  } catch(err) {
-    /* handle the error */
-  }
-}
 
             scanner.start(selectedCam);
         } else {
