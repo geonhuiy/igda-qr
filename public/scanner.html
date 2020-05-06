@@ -20,7 +20,9 @@
     });
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
-            console.log(cameras.length)
+            cameras.forEach(element => {
+                console.log(element);
+            });
             scanner.start(cameras[1]);
         } else {
             console.error('No cameras');
