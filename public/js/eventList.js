@@ -39,6 +39,7 @@ const makeList = (data) => {
     var date = new Date(data[i].date);
 
     nameSpan.innerHTML = data[i].name;
+    console.log(data[i].name);
     dateSpan.innerHTML = `${date.getHours()}:${date.getMinutes()} - ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
     locationSpan.innerHTML = data[i].location;
     countSpan.innerHTML = "Attendee count: " +data[i].attendees.length;
