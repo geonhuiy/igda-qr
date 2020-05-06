@@ -7,11 +7,11 @@ var { graphql } = require("graphql");
 const getAllMembers = async (req, res) => {
   let query = "{allMembers {firstname,lastname,email}}";
   graphql(schema, query).then((result) => {
-    res.json(result);
+    res.send(result);
   });
 };
 
-const getMemberById = async (req,res) => {
+const getMemberById = async (req, res) => {
   let query = `{memberById(id:"${req.params.id}"){firstname,lastname,email}}`;
   graphql(schema, query).then((result) => {
     res.json(result);
