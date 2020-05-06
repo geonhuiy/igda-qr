@@ -22,7 +22,8 @@ const makeList = (data) => {
     arrow.classList.add("arrow-right");
     rightDiv.appendChild(arrow);
     rightDiv.onclick = () => {
-      window.location = "scanner.html?eventId="+data[i].id ;
+      //window.location = "scanner.html?eventId="+data[i].id ;
+      console.log(data[i]);
     }
 
     var listName = document.createElement("li");
