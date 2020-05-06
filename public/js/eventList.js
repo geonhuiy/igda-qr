@@ -35,9 +35,8 @@ const makeList = (data) => {
     var date = new Date(data[i].date);
 
     nameSpan.innerHTML = data[i].name;
-    
     rightDiv.addEventListener('click', function() {
-      console.log(data[i].id);
+      console.log(this.data[i]);
     })
     dateSpan.innerHTML = `${date.getHours()}:${date.getMinutes()} - ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
     locationSpan.innerHTML = data[i].location;
