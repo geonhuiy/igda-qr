@@ -21,10 +21,6 @@ const makeList = (data) => {
     arrow.className = "arrow";
     arrow.classList.add("arrow-right");
     rightDiv.appendChild(arrow);
-    rightDiv.onclick = () => {
-      //window.location = "scanner.html?eventId="+data[i].id ;
-      console.log(data[i]);
-    }
 
     var listName = document.createElement("li");
     var listDate = document.createElement("li");
@@ -39,8 +35,12 @@ const makeList = (data) => {
     var date = new Date(data[i].date);
 
     nameSpan.innerHTML = data[i].name;
-    console.log(data[i].name);
-    console.log(data[i].id);
+    var eventId = data[i];
+    console.log(eventId);
+    rightDiv.onclick = () => {
+      //window.location = "scanner.html?eventId="+data[i].id ;
+      console.log(eventId);
+    }
     dateSpan.innerHTML = `${date.getHours()}:${date.getMinutes()} - ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
     locationSpan.innerHTML = data[i].location;
     countSpan.innerHTML = "Attendee count: " +data[i].attendees.length;
