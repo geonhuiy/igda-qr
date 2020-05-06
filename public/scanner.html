@@ -21,7 +21,18 @@
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
             console.log(cameras);
-            var selectedCam = cameras[0];
+            var selectedCam = cameras[1];
+            async function getMedia(constraints) {
+                let stream = null;
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    selectedCam._stream = stream;
+  } catch(err) {
+    /* handle the error */
+  }
+}
+
             scanner.start(selectedCam);
         } else {
             console.error('No cameras');
