@@ -4,15 +4,15 @@ const express = require("express");
 const graphql = require("express-graphql");
 const graphqlschema = require('./schema/schema');
 const cors = require('cors');
-
+const helmet = require('helmet');
 
 
 const app = express();
 const db = require("./db/db");
 app.use(cors());
-app.use(express.json()); //parsing application/json
-app.use(express.urlencoded({ extended: true })); //parsing application/form-urlencoded
-//app.use("/modules", express.static("node_modules"));
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 const memberRoute = require("./routes/memberRoute");
