@@ -9,13 +9,13 @@ const https = require("https");
 const http = require("http");
 const fs = require("fs");
 
-const sslKey = fs.readFileSync('ssl-key.pem');
+/* const sslKey = fs.readFileSync('ssl-key.pem');
 const sslCert = fs.readFileSync('ssl-cert.pem');
 
 const options = {
   key: sslKey,
   cert: sslCert
-}
+} */
 
 const app = express();
 const db = require("./db/db");
