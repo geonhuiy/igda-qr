@@ -21,9 +21,16 @@ const deleteEvent = async(req,res) => {
     res.send(result);
   })
 }
+const attendeeCheckin = async(req, res) => {
+  let query = `{attendeeCheckin(attendeeId:"${req.params.attendeeId}",eventId:"${req.params.eventId}"){name,attendees}}`;
+  graphql(schema, query).then((result) => {
+    res.send(result);
+  })
+}
 
 module.exports = {
   getAllEvents,
   getEventById,
-  deleteEvent
+  deleteEvent,
+  attendeeCheckin
 };
