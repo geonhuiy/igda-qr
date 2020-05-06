@@ -1,9 +1,13 @@
 const eventDiv = document.getElementById("event");
 
+const loadScanner = (eventID) => {
+  console.log("Opening scanner");
+  window.location = "scanner.html"
+}
+
 const makeList = (data) => {
   const list = document.createElement("ul");
   for (var i = 0; i < data.length; i++) {
-    console.log(data[i].name);
     var listDiv = document.createElement("div");
     listDiv.id = "listDiv";
     listDiv.className="card";
@@ -17,6 +21,9 @@ const makeList = (data) => {
     arrow.className = "arrow";
     arrow.classList.add("arrow-right");
     rightDiv.appendChild(arrow);
+    rightDiv.onclick = () => {
+      window.location = "scanner.html";
+    }
 
     var listName = document.createElement("li");
     var listDate = document.createElement("li");

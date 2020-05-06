@@ -1,0 +1,1 @@
+import QrScanner from '../js/qr-scanner-min';
