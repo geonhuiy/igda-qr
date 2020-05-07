@@ -10,14 +10,6 @@ const http = require("http");
 const fs = require("fs");
 const bodyParser = require('body-parser');
 
-/* const sslKey = fs.readFileSync('ssl-key.pem');
-const sslCert = fs.readFileSync('ssl-cert.pem');
-
-const options = {
-  key: sslKey,
-  cert: sslCert
-} */
-
 const app = express();
 const db = require("./db/db");
 app.use(cors());

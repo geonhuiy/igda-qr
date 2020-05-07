@@ -161,16 +161,65 @@ const Mutation = new GraphQLObjectType({
       type: eventType,
       description: "Delete an event by ID",
       args: {
-        eventId: {type: GraphQLID}
+        eventId: { type: GraphQLID },
       },
-      resolve: async (parent,args, {req,res}) => {
+      resolve: async (parent, args) => {
         try {
           let eventToDelete = await event.findByIdAndDelete(args.eventId);
-        } catch(err) {
+        } catch (err) {
           throw new Error(err);
         }
-      }
-    }
+      },
+    },
+    modifyEvent: {
+      type: eventType,
+      description: "Modify an event",
+      args: {
+        eventId: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        location: { type: GraphQLString },
+        time: { type: GraphQLDateTime },
+      },
+      resolve: async (parent, args) => {
+        try {
+          let updatedEvent = {
+            name: args.name,
+            location: args.location,
+            time: args.time
+          }
+          return await event.findByIdAndUpdate(args.eventId, updatedEvent);
+
+        }catch(err) {
+          throw new Error(err);
+        } 
+      },
+    },
+    modifyUser: {
+      type: eventType,
+      description: "Modify a user",
+      args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        firstname: { type: GraphQLString },
+        lastname: {type: GraphQLString},
+        email: {type: GraphQLString},
+        organization: {type: GraphQLString}
+      },
+      resolve: async (parent, args) => {
+        try {
+          let updatedUser = {
+            firstname: args.firstname,
+            lastname: args.lastname,
+            email: args.email,
+            organization: args.organization,
+            
+          }
+          return await member.findByIdAndUpdate(args.userId, updatedUser);
+
+        }catch(err) {
+          throw new Error(err);
+        } 
+      },
+    },
   }),
 });
 
