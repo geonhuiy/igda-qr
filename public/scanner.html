@@ -6,15 +6,6 @@
     <p>Some random text here</p>
     <video id="qrscanner" height="200px" width="200px"></video>
     <script type="text/javascript">
-    navigator.mediaDevices.getUserMedia({ 
-  video: { 
-    facingMode: { exact: "environment" }
-  } 
-})
-.then(function(stream) {
-  video.src = window.URL.createObjectURL(stream);
-  video.play();
-});
     const constraints = {
      video: true
     };
