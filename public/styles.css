@@ -28,16 +28,23 @@ ul {
   margin: 1.5rem;
 }
 
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 2.5em;
+}
 .card h1 {
   text-align: left;
   padding-left: 0.5em;
+  
 }
 .card li {
   padding-bottom: 0.5em;
 }
 .card li span {
-  padding-left: 0.8em;
-  font-size: 1.5em;
+  padding-left: 1em;
+  font-size: 2em;
 }
 
 .center {
@@ -75,7 +82,26 @@ ul {
 }
 
 #checkin {
-  width: 50%;
-  height: 40px;
-  background-color: black;
+  display: inline-block;
+  width: 40%;
+  height: 8em;
+  border-radius: 28px;
+  background-color: #282936;
+  text-align: center;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+}
+
+#checkinText {
+  color: #ffebc7;
+}
+
+#scanner {
+
 }

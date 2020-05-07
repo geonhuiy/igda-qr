@@ -19,7 +19,7 @@ const getMemberById = async (req, res) => {
 };
 
 const addMember = async (req, res) => {
-  /* try {
+  try {
     const hash = await bcrypt.hash(req.body.password, saltRound);
     req.user = {
       email: req.body.email,
@@ -40,7 +40,7 @@ const addMember = async (req, res) => {
     });
   } catch (e) {
     res.status(500).json(e);
-  } */
+  } 
 };
 
 module.exports = {

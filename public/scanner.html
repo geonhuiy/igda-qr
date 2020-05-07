@@ -4,13 +4,18 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <video id="qrscanner" height="400px" width="400px"></video>
-    <h1 id="eventname" class="info"></h1>
-    <h2 id="firstname" class="info">Firstname: </h2>
-    <h2 id="lastname" class="info">Lastname: </h2>
-    <h2 id="email" class="info">Email: </h2>
-    <h2 id="organization" class="info">Organization: </h2>
-    <div id="checkin"></div>
+    <div id="container">
+        <video id="qrscanner" height="400px" width="400px"></video>
+        <h1 id="eventname" class="info"></h1>
+        <h2 id="firstname" class="info"></h2>
+        <h2 id="lastname" class="info"></h2>
+        <h2 id="email" class="info"></h2>
+        <h2 id="organization" class="info"></h2>
+        <div id="checkin">
+            <h2 id="checkinText">Check In</h3>
+        </div>
+    </div>
+    
 
     <script type="text/javascript">
     let params = (new URL(document.location)).searchParams;
@@ -32,6 +37,12 @@
         lastname.textContent += jsonContent.lastname;
         email.textContent += jsonContent.email;
         organization.textContent += jsonContent.organization;
+
+        var checkInButton = document.getElementById("checkin");
+        checkInButton.onclick = function () {
+            console.log(jsonContent.id);
+            checkIn(jsonContent.id, eventIdValue, "/event");
+        }
     });
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
@@ -44,8 +55,21 @@
         console.error(e);
     })
 
-    const checkIn = async(attendeeId, eventId) => {
-        
+    const checkIn = async(attendeeid, eventid, httpUrl) => {
+        fetch(httpUrl, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                attendeeId: attendeeid,
+                eventId: eventid
+            })
+        }).then((res) => {
+            console.log(res);
+        })
+
     } 
     </script>
 </body>
