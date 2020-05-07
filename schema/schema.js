@@ -141,7 +141,7 @@ const Mutation = new GraphQLObjectType({
         attendeeId: { type: GraphQLID },
         eventId: { type: GraphQLID },
       },
-      resolve: async (parent, args, { req, res }) => {
+      resolve: async (parent, args) => {
         try {
           let attendingMember = await (
             await member.findById(args.attendeeId)

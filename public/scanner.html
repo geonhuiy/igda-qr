@@ -10,6 +10,8 @@
     <h2 id="lastname" class="info">Lastname: </h2>
     <h2 id="email" class="info">Email: </h2>
     <h2 id="organization" class="info">Organization: </h2>
+    <div id="checkin"></div>
+
     <script type="text/javascript">
     let params = (new URL(document.location)).searchParams;
     let eventNameValue = params.get("eventName");
@@ -41,6 +43,10 @@
     }).catch(function (e) {
         console.error(e);
     })
+
+    const checkIn = async(attendeeId, eventId) => {
+        
+    } 
     </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const https = require("https");
 const http = require("http");
 const fs = require("fs");
+const bodyParser = require('body-parser');
 
 /* const sslKey = fs.readFileSync('ssl-key.pem');
 const sslCert = fs.readFileSync('ssl-cert.pem');
@@ -24,6 +25,7 @@ app.use(helmet());
 app.enable('trust proxy');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 const memberRoute = require("./routes/memberRoute");

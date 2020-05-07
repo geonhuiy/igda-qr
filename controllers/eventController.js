@@ -22,9 +22,9 @@ const deleteEvent = async(req,res) => {
   })
 }
 const attendeeCheckin = async(req, res) => {
-  let query = `{attendeeCheckin(attendeeId:"${req.params.attendeeId}",eventId:"${req.params.eventId}"){name,attendees}}`;
+  let query = `mutation{attendeeCheckIn(attendeeId:"${req.params.attendeeId}",eventId:"${req.params.eventId}"){name,attendees{firstname,lastname}}}`;
   graphql(schema, query).then((result) => {
-    res.send(result);
+    res.json(result);
   })
 }
 
