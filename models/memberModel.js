@@ -6,7 +6,6 @@ const memberSchema = new Schema({
   firstname: String,
   lastname: String,
   organization: String,
-  //qrcode: { data: Buffer, contentType: String },
 });
 
 module.exports = mongoose.model('member', memberSchema);

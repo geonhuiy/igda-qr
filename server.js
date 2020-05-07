@@ -12,9 +12,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const db = require("./db/db");
+
 app.use(cors());
 app.use(helmet());
 app.enable('trust proxy');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
