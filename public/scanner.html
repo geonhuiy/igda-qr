@@ -33,14 +33,13 @@
         var organization = document.getElementById("organization");
 
         var jsonContent = JSON.parse(content);
-        firstname.textContent += jsonContent.firstname;
-        lastname.textContent += jsonContent.lastname;
-        email.textContent += jsonContent.email;
-        organization.textContent += jsonContent.organization;
+        firstname.innerHTML = jsonContent.firstname;
+        lastname.innerHTML = jsonContent.lastname;
+        email.innerHTML = jsonContent.email;
+        organization.innerHTML = jsonContent.organization;
 
         var checkInButton = document.getElementById("checkin");
         checkInButton.onclick = function () {
-            console.log(jsonContent.id);
             checkIn(jsonContent.id, eventIdValue, "/event");
         }
     });
