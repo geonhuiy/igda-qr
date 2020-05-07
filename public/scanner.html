@@ -6,13 +6,7 @@
     <p>Some random text here</p>
     <video id="qrscanner" height="200px" width="200px"></video>
     <script type="text/javascript">
-    const constraints = {
-     video: true
-    };
-
     const video = document.querySelector('video');
-
-    navigator.mediaDevices.getUserMedia(constraints).
     then((stream) => {video.srcObject = stream});
     let scanner = new Instascan.Scanner({video: document.getElementById('qrscanner')});
     scanner.addListener('scan', function (content) {
