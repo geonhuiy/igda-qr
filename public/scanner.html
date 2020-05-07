@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="js/instascan.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <video id="qrscanner" height="400px" width="400px"></video>
-    <h1 id="eventname"></p>
+    <h1 id="eventname" class="info"></h1>
+    <h2 id="firstname" class="info">Firstname: </h2>
+    <h2 id="lastname" class="info">Lastname: </h2>
+    <h2 id="email" class="info">Email: </h2>
+    <h2 id="organization" class="info">Organization: </h2>
     <script type="text/javascript">
+    let params = (new URL(document.location)).searchParams;
+    let eventNameValue = params.get("eventName");
+    let eventIdValue = params.get("eventId");
+
+    var eventName = document.getElementById("eventname");
+    eventName.innerHTML = eventNameValue;
+
     let scanner = new Instascan.Scanner({video: document.getElementById('qrscanner'), mirror:false});
     scanner.addListener('scan', function (content) {
-        console.log(content);
-        var eventName = document.getElementById("eventname");
-        eventName.innerHTML = content;
+        var firstname = document.getElementById("firstname");
+        var lastname = document.getElementById("lastname");
+        var email = document.getElementById("email");
+        var organization = document.getElementById("organization");
+
+        var jsonContent = JSON.parse(content);
+        firstname.innerHTML = jsonContent.firstname;
     });
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
-            console.log(cameras);
             var selectedCam = cameras[1];
             scanner.start(selectedCam);
         } else {

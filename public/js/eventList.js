@@ -1,8 +1,7 @@
 const eventDiv = document.getElementById("event");
-window.eventid2 = "id";
-const loadScanner = (eventID) => {
+const loadScanner = (urlParam) => {
   console.log("Opening scanner");
-  window.location = "scanner.html?" + eventID;
+  window.location = "scanner.html" + urlParam;
 };
 
 const makeList = (data) => {
@@ -21,9 +20,7 @@ const makeList = (data) => {
     arrow.className = "arrow";
     arrow.classList.add("arrow-right");
     rightDiv.appendChild(arrow);
-    eventid2 = data[i].id;
-    rightDiv.data = data[i].id + data[i].name;
-    console.log(eventid2);
+    rightDiv.data = "?eventId=" + data[i].id +"&eventName=" + data[i].name;
     rightDiv.onclick = function () {
         loadScanner(this.data);
     };
