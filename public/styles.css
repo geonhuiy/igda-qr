@@ -91,6 +91,7 @@ h2 {
 }
 
 #container {
+  margin-top: 3em;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -102,6 +103,7 @@ h2 {
   color: #ffebc7;
 }
 
-#scanner {
-
+#qrscanner {
+  width: 50%;
+  display: inline-block;
 }
