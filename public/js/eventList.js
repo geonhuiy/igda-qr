@@ -22,7 +22,7 @@ const makeList = (data) => {
     arrow.classList.add("arrow-right");
     rightDiv.appendChild(arrow);
     eventid2 = data[i].id;
-    rightDiv.data = data[i].id;
+    rightDiv.data = data[i].id + data[i].name;
     console.log(eventid2);
     rightDiv.onclick = function () {
         loadScanner(this.data);
