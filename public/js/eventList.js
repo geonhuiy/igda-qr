@@ -1,16 +1,16 @@
 const eventDiv = document.getElementById("event");
-
+window.eventid2 = "id";
 const loadScanner = (eventID) => {
   console.log("Opening scanner");
-  window.location = "scanner.html"
-}
+  window.location = "scanner.html?" + eventID;
+};
 
 const makeList = (data) => {
   const list = document.createElement("ul");
   for (var i = 0; i < data.length; i++) {
     var listDiv = document.createElement("div");
     listDiv.id = "listDiv";
-    listDiv.className="card";
+    listDiv.className = "card";
 
     var leftDiv = document.createElement("div");
     var rightDiv = document.createElement("div");
@@ -21,6 +21,12 @@ const makeList = (data) => {
     arrow.className = "arrow";
     arrow.classList.add("arrow-right");
     rightDiv.appendChild(arrow);
+    eventid2 = data[i].id;
+    rightDiv.data = data[i].id;
+    console.log(eventid2);
+    rightDiv.onclick = function () {
+        loadScanner(this.data);
+    };
 
     var listName = document.createElement("li");
     var listDate = document.createElement("li");
@@ -33,14 +39,10 @@ const makeList = (data) => {
     var countSpan = document.createElement("span");
 
     var date = new Date(data[i].date);
-
     nameSpan.innerHTML = data[i].name;
-    rightDiv.addEventListener('click', function() {
-      console.log(this.data[i]);
-    })
     dateSpan.innerHTML = `${date.getHours()}:${date.getMinutes()} - ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
     locationSpan.innerHTML = data[i].location;
-    countSpan.innerHTML = "Attendee count: " +data[i].attendees.length;
+    countSpan.innerHTML = "Attendee count: " + data[i].attendees.length;
 
     listName.appendChild(nameSpan);
     listDate.appendChild(dateSpan);
