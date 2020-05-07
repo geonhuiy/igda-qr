@@ -26,7 +26,10 @@
         var organization = document.getElementById("organization");
 
         var jsonContent = JSON.parse(content);
-        firstname.innerHTML = jsonContent.firstname;
+        firstname.textContent += jsonContent.firstname;
+        lastname.textContent += jsonContent.lastname;
+        email.textContent += jsonContent.email;
+        organization.textContent += jsonContent.organization;
     });
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
