@@ -5,9 +5,7 @@ const graphql = require("express-graphql");
 const graphqlschema = require("./schema/schema");
 const cors = require("cors");
 const helmet = require("helmet");
-const https = require("https");
-const http = require("http");
-const fs = require("fs");
+const passport = require('./pass');
 const bodyParser = require('body-parser');
 
 const app = express();

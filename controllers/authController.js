@@ -15,7 +15,7 @@ const login = (req, res) => {
               if (err) {
                 reject(err);
               }
-              const token = jwt.sign(user, '1234');
+              const token = jwt.sign(user, '1234asdf');
               resolve({user, token});
             });
           }

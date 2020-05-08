@@ -16,6 +16,7 @@ const {
 
 const bcrypt = require("bcrypt");
 const saltRound = 12;
+const authController = require("../controllers/authController");
 
 const member = require("../models/memberModel");
 const event = require("../models/eventModel");
@@ -82,6 +83,27 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return event.findById(args.id);
+      },
+    },
+    login: {
+      type: memberType,
+      description: "Login and username and password, returns token",
+      args: {
+        username: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve: async (parent, args, { req, res }) => {
+        req.body = args;
+        try {
+          const authResponse = await authController.login(req, res);
+          return {
+            id: authResponse.user._id,
+            ...authResponse.user,
+            token: authResponse.token,
+          };
+        } catch (err) {
+          throw new Error(err);
+        }
       },
     },
   },
@@ -185,13 +207,12 @@ const Mutation = new GraphQLObjectType({
           let updatedEvent = {
             name: args.name,
             location: args.location,
-            time: args.time
-          }
+            time: args.time,
+          };
           return await event.findByIdAndUpdate(args.eventId, updatedEvent);
-
-        }catch(err) {
+        } catch (err) {
           throw new Error(err);
-        } 
+        }
       },
     },
     modifyUser: {
@@ -200,9 +221,9 @@ const Mutation = new GraphQLObjectType({
       args: {
         userId: { type: new GraphQLNonNull(GraphQLID) },
         firstname: { type: GraphQLString },
-        lastname: {type: GraphQLString},
-        email: {type: GraphQLString},
-        organization: {type: GraphQLString}
+        lastname: { type: GraphQLString },
+        email: { type: GraphQLString },
+        organization: { type: GraphQLString },
       },
       resolve: async (parent, args) => {
         try {
@@ -211,13 +232,11 @@ const Mutation = new GraphQLObjectType({
             lastname: args.lastname,
             email: args.email,
             organization: args.organization,
-            
-          }
+          };
           return await member.findByIdAndUpdate(args.userId, updatedUser);
-
-        }catch(err) {
+        } catch (err) {
           throw new Error(err);
-        } 
+        }
       },
     },
   }),
