@@ -3,8 +3,8 @@
 
 ## Table of Contents 
  * [Getting Started](#getting-started)  
-  * [Prerequisites](#prerequisites)
-  * [Installing](#installing)
+   * [Prerequisites](#prerequisites)
+   * [Installing](#installing)
  * [Build](#build)
  * [Features](#features)
  * [GraphQL](#graphql)  
