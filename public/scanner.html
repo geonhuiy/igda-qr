@@ -41,7 +41,7 @@
         var checkInButton = document.getElementById("checkin");
         checkInButton.onclick = function () {
             checkIn(jsonContent.id, eventIdValue, "/event");
-            window.location = "index.html";
+            window.location = "events.html";
         }
     });
     Instascan.Camera.getCameras().then(function(cameras) {
