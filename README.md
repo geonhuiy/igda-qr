@@ -38,7 +38,7 @@
  
  ## Features  
  ### Login  
- ![login](https://github.com/geonhuiy/igda-qr/blob/master/screenshots/login.jpg)  
+ ![login](https://github.com/geonhuiy/igda-qr/blob/master/screenshots/login.jpg){width:40%}
  ### Sign up
  ![signup](https://github.com/geonhuiy/igda-qr/blob/master/screenshots/signup.jpg)
  
