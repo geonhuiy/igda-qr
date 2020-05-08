@@ -5,7 +5,7 @@
  * [Getting Started](#getting-started)  
    * [Prerequisites](#prerequisites)
    * [Installing](#installing)
- * [Build](#build)
+ * [Build & run](#build-&-run)
  * [Features](#features)
  * [GraphQL](#graphql)  
  
@@ -16,6 +16,7 @@
  >https://nodejs.org/en/  
  - MongoDB
  >https://www.mongodb.com/download-center/community?jmp=docs  
+ - A cloud service or a personal server to deploy to.
  
  ### Installing  
  Clone the repository to your local machine.  
@@ -26,6 +27,20 @@
  HTTP_PORT=port number here  
  HTTPS_PORT=port number here  
  DB_URL=url to MongoDB database here
- ``` 
+ ```  
+ 
+ ## Build & Run  
+ The default entry file for the backend server is `server.js`.  
+ The server can be started with `node server.js`.  
+ HTTPS is required for the backend server environment for the camera to run.  
+ For HTTPS, ssl keys and certificate is required and can be generated for local use at https://www.openssl.org/.  
+ When deploying online, ensure that the service uses SSL provided by the service of choice.  
+ 
+ ## Features  
+ 
+ ## GraphQL  
+ The default GraphQL endpoint is located at `url:/graphql`. The query / mutations include:  
+ # 
+ 
   
  
