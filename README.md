@@ -8,6 +8,8 @@
  * [Build & run](#build-&-run)
  * [Features](#features)
  * [GraphQL](#graphql)  
+   * [Queries](#queries)
+   * [Mutations](#mutations)
  
  ## Getting Started  
  ### Prerequisites
@@ -38,17 +40,72 @@
  
  ## Features  
  ### Login  
- ![login]<img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/login.jpg" width="40%" height="70%">
+ <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/login.jpg" width="40%" height="70%">
  ### Sign up
- ![signup]<img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/signup.jpg" width="40%" height="70%">
+ <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/signup.jpg" width="40%" height="70%">
  ### View Events
- ![events]<img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/events.jpg" width="40%" height="70%">
+ <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/events.jpg" width="40%" height="70%">
  ### Check In
-  ![checkin]<img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/checkin.jpg" width="40%" height="70%">
+ <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/checkin.jpg" width="40%" height="70%">
  
  ## GraphQL  
- The default GraphQL endpoint is located at `url:/graphql`. The query / mutations include:  
- # 
+ The default GraphQL endpoint is located at `url:/graphql`.  
+ ### Queries  
+ #### allMembers
+ >Gets a list of all the members in the database.  
+ ```
+ allMembers{
+  firstname,
+  lastname,
+  email,
+  organization
+ }
+ ```  
+ #### memberById(id)
+ >Gets a specific member based on the member id.
+ ```
+ memberById(id:"memberIDHere"){
+  firstname,
+  lastname,
+  email,
+  organization
+ }
+ ```
+ #### allEvents
+ >Gets a list of all events in the database.   
+ ```
+ allEvents{
+  name,
+  time,
+  location,
+  attendees {
+    ...
+  }
+ }
+ ```  
+ #### event(id)
+ >Gets a single event by id.
+ ```
+ event(id:"eventID") {
+  name,
+  time,
+  location,
+  attendees {
+    ...
+  }
+ }
+ ```
+ #### login(username, password)
+ >Logs the user in by the given credentials and returns a token.  
+ ```
+ login(username: "username", password:"password") {
+  ...,
+  token
+ }
+ ```  
+ 
+ ### Mutations  
+ 
  
   
  
