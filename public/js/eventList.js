@@ -59,7 +59,8 @@ const makeList = (data) => {
 };
 
 const fetchEvents = async (httpUrl) => {
-  fetch(httpUrl, {})
+  fetch(httpUrl, {
+  })
     .then((response) => {
       return response.json();
     })
@@ -67,5 +68,10 @@ const fetchEvents = async (httpUrl) => {
       makeList(data.data.allEvents);
     });
 };
+if (sessionStorage.getItem('token')!=null) {
+  fetchEvents("/event");
+}
+else {
+  console.log("No token");
+}
 
-fetchEvents("/event");

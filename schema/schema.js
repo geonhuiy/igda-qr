@@ -29,6 +29,7 @@ const memberType = new GraphQLObjectType({
     lastname: { type: GraphQLString },
     email: { type: GraphQLString },
     organization: { type: GraphQLString },
+    token: { type: GraphQLString },
   }),
 });
 
@@ -71,7 +72,8 @@ const RootQuery = new GraphQLObjectType({
     allEvents: {
       type: new GraphQLList(eventType),
       description: "Get all events",
-      resolve(parent, args) {
+      resolve: async(parent, args) => {
+        //await authController.checkAuth(req,res)
         return event.find();
       },
     },
@@ -89,11 +91,15 @@ const RootQuery = new GraphQLObjectType({
       type: memberType,
       description: "Login and username and password, returns token",
       args: {
-        username: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: async (parent, args, { req, res }) => {
-        req.body = args;
+        console.log("Login");
+        req.body = {
+          ...args,
+          username: args.email
+        };
         try {
           const authResponse = await authController.login(req, res);
           return {
@@ -131,6 +137,21 @@ const Mutation = new GraphQLObjectType({
           };
           const newMember = new member(hashedMember);
           const result = await newMember.save();
+          if (result !== null) {
+            // automatic login
+            req.body = {
+              ...args,
+              username: args.email,
+            }; // inject args to request body for passport
+            const authResponse = await authController.login(req, res);
+            return {
+              id: authResponse.user._id,
+              ...authResponse.user,
+              token: authResponse.token,
+            };
+          } else {
+            throw new Error('insert fail');
+          }
         } catch (err) {
           throw new Error(err);
         }
@@ -146,6 +167,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (parent, args, { req, res }) => {
         try {
+          await authController.checkAuth(req, res);
           let checkExistingEvent = await event.findOne({ name: args.name });
           if (!checkExistingEvent) {
             let newEvent = new event(args);
@@ -187,6 +209,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (parent, args) => {
         try {
+          await authController.checkAuth(req, res);
           let eventToDelete = await event.findByIdAndDelete(args.eventId);
         } catch (err) {
           throw new Error(err);
@@ -204,6 +227,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (parent, args) => {
         try {
+          await authController.checkAuth(req, res);
           let updatedEvent = {
             name: args.name,
             location: args.location,

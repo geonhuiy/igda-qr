@@ -10,7 +10,6 @@ const ExtractJWT = passportJWT.ExtractJwt;
 // local strategy for username password login
 passport.use(new Strategy(
     async (username, password, done) => {
-      console.log(username, password);
       try {
         const user = await memberModel.findOne({email: username});
         if (user === null) {
