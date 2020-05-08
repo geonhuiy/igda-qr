@@ -39,13 +39,13 @@
  When deploying online, ensure that the service uses SSL provided by the service of choice.  
  
  ## Features  
- ### Login  
+ #### Login  
  <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/login.jpg" width="40%" height="70%">
- ### Sign up
+ #### Sign up
  <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/signup.jpg" width="40%" height="70%">
- ### View Events
+ #### View Events
  <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/events.jpg" width="40%" height="70%">
- ### Check In
+ #### Check In
  <img src="https://github.com/geonhuiy/igda-qr/blob/master/screenshots/checkin.jpg" width="40%" height="70%">
  
  ## GraphQL  
