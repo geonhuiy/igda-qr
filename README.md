@@ -37,6 +37,10 @@
  When deploying online, ensure that the service uses SSL provided by the service of choice.  
  
  ## Features  
+ ### Login  
+ ![login](https://github.com/geonhuiy/igda-qr/blob/master/screenshots/login.jpg)  
+ ### Sign up
+ ![signup](https://github.com/geonhuiy/igda-qr/blob/master/screenshots/signup.jpg)
  
  ## GraphQL  
  The default GraphQL endpoint is located at `url:/graphql`. The query / mutations include:  
