@@ -22,8 +22,8 @@
  `git clone https://github.com/geonhuiy/igda-qr.git`  
  Navigate to the project root directory on a CLI and run `npm i` to install the necessary Node.js packages.  
  In the project folder, create a file named `.env` which will contain the environment variables used in the project. The content      of the `.env` file is as follows:  
- `HTTP_PORT=port number here  
-  HTTPS_PORT=port number here  
-  DB_URL=url to MongoDB database here  `  
+ ```HTTP_PORT=port number here  
+    HTTPS_PORT=port number here  
+    DB_URL=url to MongoDB database here``` 
   
  
