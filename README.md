@@ -64,7 +64,7 @@
  #### memberById(id)
  >Gets a specific member based on the member id.
  ```
- memberById(id:"memberIDHere"){
+ memberById(args){
   firstname,
   lastname,
   email,
@@ -86,7 +86,7 @@
  #### event(id)
  >Gets a single event by id.
  ```
- event(id:"eventID") {
+ event(args) {
   name,
   time,
   location,
@@ -98,13 +98,37 @@
  #### login(username, password)
  >Logs the user in by the given credentials and returns a token.  
  ```
- login(username: "username", password:"password") {
+ login(args) {
   ...,
   token
  }
  ```  
  
  ### Mutations  
+ #### registerMember(password, email, firstname, lastname, organization)  
+ >Registers a new user.  
+ ```
+ registerMember(args) {
+  ...
+ }
+ ```  
+ #### addEvent(location, date, name)
+ >Adds a new event.
+ ```
+ addEvent(args) {
+  ...
+ }
+ ```  
+ #### attendeeCheckIn(attendeeId, eventId)
+ >Checks a user into an event.  
+ ```
+ attendeeCheckIn(args) {
+  ...,
+  attendees {
+    ...
+  }
+ }
+ ```
  
  
   
